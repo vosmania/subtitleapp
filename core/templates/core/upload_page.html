@@ -1,0 +1,25 @@
+{% include 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<style>
+    .container{
+        height: 100%;
+        margin-top: 4%;
+    }
+</style>
+{% block content %}
+    <div class="container">
+    <h class="display-6">Add a new movie</h>
+        <hr class="my-md1">
+        <br>
+<form method="POST" action="">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input type="submit" value="Add movie">
+
+</form>
+
+    </div>
+{% endblock content %}

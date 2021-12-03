@@ -1,0 +1,34 @@
+{% block content %}
+    <table class="table">
+<thead>
+    <tr>
+    <th>Title</th>
+    <th>Genre</th>
+    <th>Release date</th>
+    <th>Link to IMDB page</th>
+    </tr>
+</thead>
+
+    <tr>
+        {% for movie in movies %}
+    <td>
+        {{ movie.name }}
+    </td>
+
+    <td>
+        {{ movie.genreclean }}
+    </td>
+
+    <td>
+        {{ movie.release_date }}
+    </td>
+
+    <td>
+        <a href="{{ movie.imdb_link }}">IMDB</a>
+    </td>
+    </tr>
+
+{% endfor %}
+
+    </table>
+{% endblock content %}
