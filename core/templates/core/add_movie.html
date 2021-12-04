@@ -1,9 +1,10 @@
-{% include 'core/base.html' %}
-{% load static %}
+{% include 'core/navbar.html' %}
+{% load bootstrap4 %}
 {% load crispy_forms_tags %}
 <style>
     .container{
         height: 100%;
+        width: 50%;
         margin-top: 4%;
     }
 </style>
@@ -17,7 +18,9 @@
     {% csrf_token %}
     {{ form|crispy }}
     <br>
-    <input type="submit" value="Add movie">
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Add Movie</button>
+    {% endbuttons %}
 
 </form>
 

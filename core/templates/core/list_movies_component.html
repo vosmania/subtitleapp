@@ -1,4 +1,15 @@
+<style>
+    .container{
+        width: 50%;
+        margin-top: 10%;
+    }
+
+</style>
+
+
 {% block content %}
+    <div class="container">
+
     <table class="table">
 <thead>
     <tr>
@@ -12,7 +23,7 @@
     <tr>
         {% for movie in movies %}
     <td>
-        {{ movie.name }}
+        <a href="{% url 'movie' movie.name %}">{{ movie.name }}</a>
     </td>
 
     <td>
@@ -31,4 +42,5 @@
 {% endfor %}
 
     </table>
+    </div>
 {% endblock content %}

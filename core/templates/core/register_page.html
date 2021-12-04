@@ -1,10 +1,15 @@
-{% include 'core/base.html' %}
+{% include 'core/navbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
 <style>
 ul{
     display: none;
 }
-.helptext{
+#hint_id_username{
+    display: none;
+}
+#hint_id_password2{
     display: none;
 }
 html, body{
@@ -12,20 +17,36 @@ html, body{
     width: 100%;
 }
 
-</style>
+    #formcontainer{
+        margin-top: 10%;
+        width: 20%;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 8px;
+        border-color: lightgrey;
+    }
+    form{
+        margin: 30px;
+    }
+    #loginlogo{
+        padding: 10px;
+    }
 
-<div class="flex-xxl-fill">
-<div class="row col-md-2">
+</style>
+<body class="text-center">
+<div class="container" id="formcontainer">
+
     <form method="post" action="">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Sign up!">
+        <img src="{% static 'styles/media/logo.png' %}" width="80" height="80" alt="" id="loginlogo">
+        {{ form|crispy }}
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
     <p>Already registered??</p>
     <a href="{%  url 'login_page' %}">Sign in now!</a>
     </div>
-</div>
-
+</body>
 
 {% endblock content %}

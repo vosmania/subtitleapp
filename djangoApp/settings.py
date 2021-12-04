@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'bootstrap4',
     'crispy_forms',
 ]
 
@@ -54,6 +55,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'djangoApp.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT = BASE_DIR / 'subtitles'
+MEDIA_URL = '/subtitles/'
 
 TEMPLATES = [
     {

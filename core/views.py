@@ -4,20 +4,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse
 from . import forms
-from . import models
+from .models import MovieList
+from django.http import HttpResponse
 
 
 # Create your views here.
 
 
 def home(request):
-    movies = models.MovieList.objects.filter()
+    movies = MovieList.objects.filter()
     context = {'movies': movies}
 
     return render(request, 'core/base.html', context)
+
+
+def movieview(request, pk):
+    try:
+        movie = MovieList.objects.get(name__exact=pk)
+        context = {'movie': movie}
+        return render(request, 'core/movieview.html', context)
+    except:
+        return HttpResponse(f"{pk} is not in the database yet.")
 
 
 def loginpage(request):
@@ -60,7 +68,13 @@ def uploadpage(request):
 
     context = {'form': form}
 
-    return render(request, 'core/upload_page.html', context)
+    return render(request, 'core/add_movie.html', context)
+
+
+@login_required
+def uploadsubtitles(request):
+    context = {}
+    return render(request, 'core/upload_component.html', context)
 
 
 def registerpage(request):

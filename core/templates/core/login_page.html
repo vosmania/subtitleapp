@@ -1,23 +1,44 @@
-{% include 'core/base.html' %}
-{% block content %}
+<header>
+{% include 'core/navbar.html' %}
+</header>
+{% load static %}
+    {% block content %}
+    {% load bootstrap4 %}
+{% load crispy_forms_tags %}
 
+<style>
+    #formcontainer{
+        margin-top: 10%;
+        width: 20%;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 8px;
+        border-color: lightgrey;
+    }
+    form{
+        margin: 30px;
+    }
+    #loginlogo{
+        padding: 10px;
+    }
 
+</style>
+<body class="text-center">
+<div class="container" id="formcontainer">
+    <form class="form-signin" method="post">
+        {% csrf_token %}
+      <img src="{% static 'styles/media/logo.png' %}" width="80" height="80" alt="" id="loginlogo">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="username" class="sr-only">Username</label>
+      <input type="text" class="form-control" placeholder="Username" name="username" required autofocus id="username">
 
-    <div>
-
-        <form method="post" action="">
-            {% csrf_token %}
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Enter username">
-
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Enter password">
-
-            <input type="submit" value="Log in">
-        </form>
-    <p>Haven't signed up yet?</p>
-    <a href="{%  url 'register_page' %}">Sign up now!</a>
-
+        <br>
+        <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" class="form-control" placeholder="Password" name="password" id="inputPassword" required>
+        <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p>Don't have an account yet? <br> <a href="{% url 'register_page' %}">Register here</a></p>
+    </form>
     </div>
-
+</body>
 {% endblock content %}

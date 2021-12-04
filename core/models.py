@@ -1,6 +1,9 @@
 from django.db import models
 import re
 
+class Subtitles(models.Model):
+    title = models.CharField(max_length=200)
+    sub_file = models.FileField()
 
 class GenreChoices(models.Model):
     genre = models.CharField(max_length=200)

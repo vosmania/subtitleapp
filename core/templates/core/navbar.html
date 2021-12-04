@@ -6,7 +6,7 @@
 {% block content %}
 <style>
 
-    img{
+    #navimg{
         margin-left: 30px;
     }
 
@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'home' %}">
-    <img src="{% static 'styles/media/logo.png' %}" width="60" height="60" alt="">
+    <img src="{% static 'styles/media/logo.png' %}" width="60" height="60" alt="" id="navimg">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,16 @@
     <ul class="navbar-nav">
       <li class="nav-item active">
             {% if request.user.is_authenticated %}
-        <a class="nav-link" href="{% url 'logout_page' %}">Log out <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'logout_page' %}"><small>Logged in as {{ request.user }}<br></small>Log out <span class="sr-only"></span></a>
             {% else %}
         <a class="nav-link" href="{% url 'login_page' %}">Log in <span class="sr-only"></span></a>
             {% endif %}
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'upload_page' %}">Upload subtitles</a>
+        <a class="nav-link" href="{% url 'upload_page' %}">Add a new movie</a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'upload_subtitles' %}">Upload subtitles</a>
       </li>
     </ul>
   </div>
