@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('core', '0002_auto_20211203_0134'),
     ]
@@ -13,6 +12,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='movie',
             name='genre',
-            field=models.CharField(choices=[('1', 'Action'), ('2', 'Adventure'), ('3', 'Drama'), ('4', 'Sci-Fi'), ('5', 'Horror'), ('6', 'Thriller'), ('7', 'Crime'), ('8', 'War'), ('9', 'Romance'), ('10', 'Animation'), ('11', 'Music'), ('12', 'Mystery')], max_length=30),
+            field=models.CharField(
+                choices=[('1', 'Action'), ('2', 'Adventure'), ('3', 'Drama'), ('4', 'Sci-Fi'), ('5', 'Horror'),
+                         ('6', 'Thriller'), ('7', 'Crime'), ('8', 'War'), ('9', 'Romance'), ('10', 'Animation'),
+                         ('11', 'Music'), ('12', 'Mystery')], max_length=30),
         ),
     ]

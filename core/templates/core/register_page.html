@@ -2,51 +2,56 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<style>
-ul{
-    display: none;
-}
-#hint_id_username{
-    display: none;
-}
-#hint_id_password2{
-    display: none;
-}
-html, body{
-    height: 100%;
-    width: 100%;
-}
+    <style>
+        ul {
+            display: none;
+        }
 
-    #formcontainer{
-        margin-top: 10%;
-        width: 20%;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 8px;
-        border-color: lightgrey;
-    }
-    form{
-        margin: 30px;
-    }
-    #loginlogo{
-        padding: 10px;
-    }
+        #hint_id_username {
+            display: none;
+        }
 
-</style>
-<body class="text-center">
-<div class="container" id="formcontainer">
+        #hint_id_password2 {
+            display: none;
+        }
 
-    <form method="post" action="">
-        {% csrf_token %}
-        <img src="{% static 'styles/media/logo.png' %}" width="80" height="80" alt="" id="loginlogo">
-        {{ form|crispy }}
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
 
-    <p>Already registered??</p>
-    <a href="{%  url 'login_page' %}">Sign in now!</a>
+        #formcontainer {
+            margin-top: 10%;
+            width: 20%;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 8px;
+            border-color: lightgrey;
+        }
+
+        form {
+            margin: 30px;
+        }
+
+        #loginlogo {
+            padding: 10px;
+        }
+
+    </style>
+    <body class="text-center">
+    <div class="container" id="formcontainer">
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <img src="{% static 'styles/media/logo.png' %}" width="80" height="80" alt="" id="loginlogo">
+            {{ form|crispy }}
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+        <p>Already registered??</p>
+        <a href="{% url 'login_page' %}">Sign in now!</a>
     </div>
-</body>
+    </body>
 
 {% endblock content %}

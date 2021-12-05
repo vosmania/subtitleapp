@@ -1,9 +1,7 @@
-from django.db import models
 import re
 
-class Subtitles(models.Model):
-    title = models.CharField(max_length=200)
-    sub_file = models.FileField()
+from django.db import models
+
 
 class GenreChoices(models.Model):
     genre = models.CharField(max_length=200)
@@ -23,9 +21,17 @@ class MovieList(models.Model):
 
     def __str__(self):
         return self.name
+
     def genreclean(self):
         raw = str(self.genre.values())
         regex = re.compile("(?<=: ')(.*?)(?='})")
         clean = regex.findall(raw)
         cleaner = str(clean)[1:-1].replace("'", "")
         return cleaner
+
+def up_to(instance, filename):
+    return f'media/{instance.name}/{filename}'
+
+class Upload(models.Model):
+    name = models.CharField(max_length=200)
+    file = models.FileField(upload_to=up_to)

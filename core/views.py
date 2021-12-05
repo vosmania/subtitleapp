@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from .models import Upload
+
 from . import forms
-from .models import MovieList
-from django.http import HttpResponse
+from .models import MovieList, Upload
 
 
 # Create your views here.
@@ -20,12 +21,26 @@ def home(request):
 
 
 def movieview(request, pk):
-    try:
-        movie = MovieList.objects.get(name__exact=pk)
-        context = {'movie': movie}
-        return render(request, 'core/movieview.html', context)
-    except:
-        return HttpResponse(f"{pk} is not in the database yet.")
+    movie = MovieList.objects.get(name__exact=pk)
+
+    context = {'movie': movie}
+    return render(request, 'core/movieview.html', context)
+
+
+def upload(request, pk):
+    form = forms.UploadForm()
+    if request.method == "POST":
+        form = forms.UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file_in = form.save(commit=False)
+            file_in.name = pk
+            file_in.save()
+
+
+
+    context = {'form': form}
+
+    return render(request, 'core/upload_component.html', context)
 
 
 def loginpage(request):
@@ -69,12 +84,6 @@ def uploadpage(request):
     context = {'form': form}
 
     return render(request, 'core/add_movie.html', context)
-
-
-@login_required
-def uploadsubtitles(request):
-    context = {}
-    return render(request, 'core/upload_component.html', context)
 
 
 def registerpage(request):

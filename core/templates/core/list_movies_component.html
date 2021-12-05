@@ -1,5 +1,5 @@
 <style>
-    .container{
+    .container {
         width: 50%;
         margin-top: 10%;
     }
@@ -10,37 +10,37 @@
 {% block content %}
     <div class="container">
 
-    <table class="table">
-<thead>
-    <tr>
-    <th>Title</th>
-    <th>Genre</th>
-    <th>Release date</th>
-    <th>Link to IMDB page</th>
-    </tr>
-</thead>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Release date</th>
+                <th>Link to IMDB page</th>
+            </tr>
+            </thead>
 
-    <tr>
-        {% for movie in movies %}
-    <td>
-        <a href="{% url 'movie' movie.name %}">{{ movie.name }}</a>
-    </td>
+            <tr>
+                {% for movie in movies %}
+                    <td>
+                        <a href="{% url 'movie' movie.name %}">{{ movie.name }}</a>
+                    </td>
 
-    <td>
-        {{ movie.genreclean }}
-    </td>
+                    <td>
+                        {{ movie.genreclean }}
+                    </td>
 
-    <td>
-        {{ movie.release_date }}
-    </td>
+                    <td>
+                        {{ movie.release_date }}
+                    </td>
 
-    <td>
-        <a href="{{ movie.imdb_link }}">IMDB</a>
-    </td>
-    </tr>
+                    <td>
+                        <a href="{{ movie.imdb_link }}">IMDB</a>
+                    </td>
+                    </tr>
 
-{% endfor %}
+                {% endfor %}
 
-    </table>
+        </table>
     </div>
 {% endblock content %}

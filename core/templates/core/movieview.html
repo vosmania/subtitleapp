@@ -1,5 +1,44 @@
 {% include 'core/navbar.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
 
-<h1 class="display-5">{{ movie.name }} ({{ movie.release_date }})</h1>
+    <style>
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            color: black;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .btn:hover {
+
+        }
+
+    </style>
+
+    <body class="text-center">
+
+    <div class="container-fluid bg-dark text-light p-5">
+        <div class="container bg-dark p-5">
+            <h1 class="display-4">{{ movie.name }}</h1>
+            <hr>
+            <p>A list of subtitles for {{ movie.name }} will be listed here if there are any.</p><br>
+
+            <button class="btn btn-lg btn-outline-light btn-block">
+                <a href="{% url 'add_subs' movie.name %}">Add subtitles</a>
+            </button>
+        </div>
+    </div>
+    </body>
+
 {% endblock content %}

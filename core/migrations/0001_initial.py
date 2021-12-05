@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,7 +16,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('release_date', models.CharField(max_length=10)),
-                ('genre', models.CharField(choices=[('action', 'Action'), ('adventure', 'Adventure'), ('drama', 'Drama'), ('scifi', 'Sci-Fi')], max_length=30)),
+                ('genre', models.CharField(
+                    choices=[('action', 'Action'), ('adventure', 'Adventure'), ('drama', 'Drama'), ('scifi', 'Sci-Fi')],
+                    max_length=30)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('imdb_link', models.CharField(max_length=100)),
             ],
